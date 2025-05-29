@@ -1,4 +1,5 @@
 const axios = require('axios');
+const evaluateHealth = require('./evaluateHealth');
 
 async function fetchFromOpenFoodFacts(barcode) {
 try {
@@ -14,8 +15,11 @@ if (response.data.status === 1) {
     brand: product.brands || '',
     sugar: product.nutriments?.sugars_100g || 0,
     calories: product.nutriments?.energy_kcal_100g || 0,
-    healthyFor: ['dewasa'] // bisa dikembangkan berdasarkan sugar atau kalori
-  };
+    healthyFor: evaluateHealth({
+      sugar: product.nutriments?.sugars_100g || 0,
+      calories: product.nutriments?.energy_kcal_100g || 0
+    })
+};
 } else {
   return null;
 }
