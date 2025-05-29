@@ -31,5 +31,5 @@ res.status(500).json({ message: 'Terjadi kesalahan server' });
 // Jalankan server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-console.log(🚀 Server berjalan di http://localhost:${PORT});
+console.log(`🚀 Server berjalan di http://localhost:${PORT}`);
 });
