@@ -36,6 +36,6 @@ Lansia: disarankan rendah sodium dan lemak jenuh
 
 📎 Sumber:
 
-https://peraturan.bpk.go.id/Details/172111/permenkes-no-30-tahun-2013
+[https://peraturan.bpk.go.id/Details/172111/permenkes-no-30-tahun-2013](https://peraturan.bpk.go.id/Download/165280/Permenkes%20Nomor%2030%20Tahun%202013.pdf)
 
 https://www.who.int/publications/i/item/9789241549028 (WHO Sugar Guideline)
