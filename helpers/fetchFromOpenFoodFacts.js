@@ -3,7 +3,7 @@ const evaluateHealth = require('./evaluateHealth');
 
 async function fetchFromOpenFoodFacts(barcode) {
 try {
-const url = https:`//world.openfoodfacts.org/api/v0/product/${barcode}.json`;
+const url = `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`;
 const response = await axios.get(url, { timeout: 5000 });
   if (response.data.status === 1) {
   const product = response.data.product;
