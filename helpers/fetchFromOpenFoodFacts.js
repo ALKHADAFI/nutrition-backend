@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 async function fetchFromOpenFoodFacts(barcode) {
-const url = https:`//world.openfoodfacts.org/api/v0/product/${barcode}.json`
+const url = `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`
 console.log('🌐 Fetching from OFF:', url)
 
 try {
