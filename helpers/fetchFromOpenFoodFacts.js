@@ -28,7 +28,7 @@ const response = await axios.get(url, { timeout: 5000 });
 } else {
   return null;
 }
-} catch (error) {
+} catch (err) {
 console.error('❌ Error saat fetch dari Open Food Facts:', err.message);
 return null;
 }
