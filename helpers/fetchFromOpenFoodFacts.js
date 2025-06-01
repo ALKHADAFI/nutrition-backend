@@ -1,37 +1,22 @@
-const axios = require('axios');
-const evaluateHealth = require('./evaluateHealth');
+const axios = require('axios')
 
 async function fetchFromOpenFoodFacts(barcode) {
+const url = https://world.openfoodfacts.org/api/v0/product/${barcode}.json
+console.log('🌐 Fetching from OFF:', url)
+
 try {
-const url = `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`;
-const response = await axios.get(url, { timeout: 5000 });
+const response = await axios.get(url, { timeout: 5000 })
   if (response.data.status === 1) {
-  const product = response.data.product;
-  const nutriments = product.nutriments || {};
-
-  const sugar = nutriments.sugars_100g || 0;
-  const calories = nutriments.energy_kcal_100g || 0;
-  const saturatedFat = nutriments["saturated-fat_100g"] || 0;
-  const sodiumGrams = nutriments.sodium_100g || 0;
-  const sodium = sodiumGrams * 1000; // convert gram to mg
-
-  return {
-    barcode: product.code,
-    name: product.product_name || 'Tidak diketahui',
-    brand: product.brands || '',
-    sugar,
-    calories,
-    saturatedFat,
-    sodium,
-    healthyFor: evaluateHealth({ sugar, calories, saturatedFat, sodium })
-  };
+  console.log('✅ Produk ditemukan di OFF')
+  return response.data.product
 } else {
-  return null;
+  console.warn('⚠️ Produk tidak ditemukan di OFF')
+  return null
 }
 } catch (err) {
-console.error('❌ Error saat fetch dari Open Food Facts:', err.message);
-return null;
+console.error('❌ Gagal fetch dari OFF:', err.message)
+return null
 }
 }
 
-module.exports = fetchFromOpenFoodFacts;
+module.exports = fetchFromOpenFoodFacts
