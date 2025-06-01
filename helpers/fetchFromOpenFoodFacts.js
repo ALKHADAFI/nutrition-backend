@@ -4,7 +4,7 @@ const evaluateHealth = require('./evaluateHealth');
 async function fetchFromOpenFoodFacts(barcode) {
 try {
 const url = https:`//world.openfoodfacts.org/api/v0/product/${barcode}.json`;
-const response = await axios.get(url);
+const response = await axios.get(url, { timeout: 5000 });
   if (response.data.status === 1) {
   const product = response.data.product;
   const nutriments = product.nutriments || {};
@@ -28,7 +28,7 @@ const response = await axios.get(url);
 } else {
   return null;
 }
-} catch (err) {
+} catch (error) {
 console.error('❌ Error saat fetch dari Open Food Facts:', err.message);
 return null;
 }
