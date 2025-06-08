@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const ProductSchema = new mongoose.Schema({
   barcode: { type: String, required: true, unique: true },
   name: String,
