@@ -10,3 +10,5 @@ const ProductSchema = new mongoose.Schema({
   sodium: Number,
   healthyFor: [String]
 });
+
+module.exports = mongoose.model('Product', ProductSchema);
