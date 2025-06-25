@@ -1,14 +1,14 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const ProductSchema = new mongoose.Schema({
   barcode: { type: String, required: true, unique: true },
-  name: String,
-  brand: String,
-  sugar: Number,
-  calories: Number,
-  saturatedFat: Number,
-  sodium: Number,
-  healthyFor: [String]
+  name: { type: String },
+  brand: { type: String },
+  sugar: { type: Number },
+  calories: { type: Number },
+  saturatedFat: { type: Number },
+  sodium: { type: Number },
+  healthyFor: [{ type: String }]
 });
 
-module.exports = mongoose.model('Product', ProductSchema);
+export default mongoose.models.Product || mongoose.model('Product', ProductSchema);
