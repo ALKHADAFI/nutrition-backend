@@ -1,5 +1,5 @@
 import dbConnect from '../../../lib/db.js';
-import Product from '../../../models/Product,js';
+import Product from '../../../models/Product.js';
 import evaluateHealth from '../../../helpers/evaluateHealth.js';
 
 export default async function handler(req, res) {
