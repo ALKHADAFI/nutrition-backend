@@ -1,0 +1,12 @@
+{
+  "name": "nutrition-api",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "mongoose": "^7.0.0"
+  }
+}
