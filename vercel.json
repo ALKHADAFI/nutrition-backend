@@ -1,6 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/products/:barcode", "destination": "/api/products/:barcode" },
-    { "source": "/products", "destination": "/api/products" }
-  ]
-}
