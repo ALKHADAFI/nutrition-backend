@@ -2,24 +2,24 @@ import dbConnect from '../../../lib/db.js';
 import Product from '../../../models/Product.js';
 import evaluateHealth from '../../../helpers/evaluateHealth.js';
 
-export default async function handler(req, res) {
-  await dbConnect();
+export async function POST(req) {
+  const body = await req.json();
+  console.log("📝 POST body received:", body); // ✅ Tambahkan ini
 
-  if (req.method === 'POST') {
-    try {
-      const body = req.body;
-      const existing = await Product.findOne({ barcode: body.barcode });
-      if (existing) return res.status(409).json({ message: 'Produk sudah ada' });
+  try {
+    await dbConnect();
 
-      const product = new Product(body);
-      await product.save();
-
-      const result = evaluateHealth(product);
-      return res.status(201).json({ ...product._doc, ...result });
-    } catch (error) {
-      return res.status(500).json({ message: 'Gagal menyimpan produk', error: error.message });
+    const existingProduct = await Product.findOne({ barcode: body.barcode });
+    if (existingProduct) {
+      return NextResponse.json({ message: "Produk sudah ada" }, { status: 409 });
     }
-  } else {
-    return res.status(405).json({ message: 'Metode tidak diizinkan' });
+
+    const result = evaluateHealth(body);
+    const product = await Product.create({ ...body, ...result });
+
+    return NextResponse.json(product, { status: 201 });
+  } catch (error) {
+    console.error("❌ Error in POST /products:", error); // ✅ Log error
+    return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 }
